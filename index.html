@@ -3,28 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rowax&Stars - Brawl Stars Rehber & Araçlar</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- FontAwesome İkonlar -->
+  <title>Rowax&Stars - Brawl Stars Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --bs-blue-bg: #0d1b2a;
-      --bs-blue-card: #1b263b;
-      --bs-blue-accent: #415a77;
-      --bs-yellow: #fca311;
-      --bs-cyan: #00b4d8;
-    }
+    body { background-color: #0b1a30; color: #ffffff; font-family: sans-serif; }
+    .navbar { background-color: #162b4c; border-bottom: 3px solid #ffc107; }
+    .card { background-color: #162b4c; color: white; border: 1px solid #1f3b68; }
+    .tier-row { background-color: #1f3b68; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
 
-    body {
-      background-color: var(--bs-blue-bg);
-      color: #fff;
-      font-family: 'Roboto', sans-serif;
-    }
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark p-3">
+    <div class="container-fluid">
+      <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="navbar-brand ms-2 fw-bold text-warning">
+        <i class="fas fa-star text-warning me-1"></i> Rowax&Stars
+      </span>
+      <input type="text" class="form-control w-25" placeholder="Brawler Ara...">
+    </div>
+  </nav>
 
-    h1, h2, h3, .navbar-brand, .tier-header {
-      font-family: 'Lilita One', cursiv
+  <!-- Offcanvas Menu -->
+  <div class="offcanvas offcanvas-start bg-dark text-white" id="menu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-warning">Menü</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-dark text-white"><a href="#tierlist" class="text-white text-decoration-none">Tier List</a></li>
+        <li class="list-group-item bg-dark text-white"><a href="#news" class="text-white text-decoration-none">Buff & Nerf</a></li>
+        <li class="list-group-item bg-dark text-white"><a href="#calculator" class="text-white text-decoration-none">Kupa Hesaplayıcı</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container my-4">
+    <!-- Tier List Section -->
+    <div id="tierlist" class="mb-5">
+      <h2 class="text-warning mb-3"><i class="fas fa-list-ol"></i> Brawler Tier List</h2>
+      <div class="tier-row d-flex align-items-center">
+        <span class="badge bg-danger fs-5 me-3">S Tier</span>
+        <div>Shelly, Colt, Spike</div>
+      </div>
+      <div class="tier-row d-flex align-items-center">
+        <span class="badge bg-warning text-dark fs-5 me-3">A Tier</span>
+        <div>El Primo, Poco, Mortis</div>
+      </div>
+    </div>
+
+    <!-- News Section -->
+    <div id="news" class="mb-5">
+      <h2 class="text-warning mb-3"><i class="fas fa-newspaper"></i> Buff & Nerf Haberleri</h2>
+      <div class="card p-3 mb-2">
+        <h5 class="text-success"><i class="fas fa-arrow-up"></i> Shelly Buff Alıyor</h5>
+        <p class="mb-0">Shelly'nin ana saldırı hasarı %5 artırıldı.</p>
+      </div>
+      <div class="card p-3">
+        <h5 class="text-danger"><i class="fas fa-arrow-down"></i> Edgar Nerf Alıyor</h5>
+        <p class="mb-0">Edgar'ın süper yetenek dolum süresi %10 uzatıldı.</p>
+      </div>
+    </div>
+
+    <!-- Trophy Calculator Section -->
+    <div id="calculator" class="mb-5">
+      <h2 class="text-warning mb-3"><i class="fas fa-trophy"></i> Kupa Hesaplayıcı</h2>
+      <div class="card p-4 text-center">
+        <h4>Toplam Kupa: <span id="trophy-count" class="text-warning">0</span></h4>
+        <div class="mt-3">
+          <button class="btn btn-success me-2" onclick="changeTrophies(100)">+100 Kupa</button>
+          <button class="btn btn-danger" onclick="changeTrophies(-100)">-100 Kupa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let trophies = 0;
+    function changeTrophies(amount) {
+      trophies += amount;
+      if (trophies < 0) trophies = 0;
+      document.getElementById('trophy-count').innerText = trophies;
+    }
+  </script>
+</body>
+</html>
