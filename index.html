@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -34,63 +33,3 @@
       <h5 class="offcanvas-title text-warning">Menü</h5>
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
-    <div class="offcanvas-body">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item bg-dark text-white"><a href="#tierlist" class="text-white text-decoration-none">Tier List</a></li>
-        <li class="list-group-item bg-dark text-white"><a href="#news" class="text-white text-decoration-none">Buff & Nerf</a></li>
-        <li class="list-group-item bg-dark text-white"><a href="#calculator" class="text-white text-decoration-none">Kupa Hesaplayıcı</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="container my-4">
-    <!-- Tier List Section -->
-    <div id="tierlist" class="mb-5">
-      <h2 class="text-warning mb-3"><i class="fas fa-list-ol"></i> Brawler Tier List</h2>
-      <div class="tier-row d-flex align-items-center">
-        <span class="badge bg-danger fs-5 me-3">S Tier</span>
-        <div>Shelly, Colt, Spike</div>
-      </div>
-      <div class="tier-row d-flex align-items-center">
-        <span class="badge bg-warning text-dark fs-5 me-3">A Tier</span>
-        <div>El Primo, Poco, Mortis</div>
-      </div>
-    </div>
-
-    <!-- News Section -->
-    <div id="news" class="mb-5">
-      <h2 class="text-warning mb-3"><i class="fas fa-newspaper"></i> Buff & Nerf Haberleri</h2>
-      <div class="card p-3 mb-2">
-        <h5 class="text-success"><i class="fas fa-arrow-up"></i> Shelly Buff Alıyor</h5>
-        <p class="mb-0">Shelly'nin ana saldırı hasarı %5 artırıldı.</p>
-      </div>
-      <div class="card p-3">
-        <h5 class="text-danger"><i class="fas fa-arrow-down"></i> Edgar Nerf Alıyor</h5>
-        <p class="mb-0">Edgar'ın süper yetenek dolum süresi %10 uzatıldı.</p>
-      </div>
-    </div>
-
-    <!-- Trophy Calculator Section -->
-    <div id="calculator" class="mb-5">
-      <h2 class="text-warning mb-3"><i class="fas fa-trophy"></i> Kupa Hesaplayıcı</h2>
-      <div class="card p-4 text-center">
-        <h4>Toplam Kupa: <span id="trophy-count" class="text-warning">0</span></h4>
-        <div class="mt-3">
-          <button class="btn btn-success me-2" onclick="changeTrophies(100)">+100 Kupa</button>
-          <button class="btn btn-danger" onclick="changeTrophies(-100)">-100 Kupa</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    let trophies = 0;
-    function changeTrophies(amount) {
-      trophies += amount;
-      if (trophies < 0) trophies = 0;
-      document.getElementById('trophy-count').innerText = trophies;
-    }
-  </script>
-</body>
-</html>
