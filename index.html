@@ -4,151 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rowax&Stars - Brawl Stars Hub</title>
-  <!-- Bootstrap 5 & FontAwesome -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;900&display=swap');
-
-    body {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%);
-      color: #ffffff;
-      font-family: 'Nunito', sans-serif;
-      min-height: 100vh;
-    }
-
-    h1, h2, h3, h4, h5, .navbar-brand, .bs-font {
-      font-family: 'Lilita One', cursive;
-      letter-spacing: 1px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-    }
-
-    .navbar {
-      background: rgba(13, 27, 42, 0.95);
-      border-bottom: 4px solid #ffc107;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-
-    .bs-card {
-      background: rgba(27, 38, 59, 0.85);
-      border: 3px solid #ffc107;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-      backdrop-filter: blur(5px);
-    }
-
-    .badge-buff { background-color: #28a745; color: white; font-size: 0.9rem; }
-    .badge-nerf { background-color: #dc3545; color: white; font-size: 0.9rem; }
-    .badge-rework { background-color: #17a2b8; color: white; font-size: 0.9rem; }
-
-    .brawler-card {
-      background: rgba(13, 27, 42, 0.9);
-      border: 2px solid #415a77;
-      border-radius: 12px;
-      transition: transform 0.2s;
-    }
-    .brawler-card:hover {
-      transform: translateY(-3px);
-      border-color: #ffc107;
-    }
-
-    .offcanvas {
-      background: #0d1b2a;
-      border-right: 4px solid #ffc107;
-    }
-
-    .btn-bs {
-      background-color: #ffc107;
-      color: #000;
-      font-weight: 900;
-      border: 2px solid #fff;
-      box-shadow: 0 4px 0 #d39e00;
-    }
-    .btn-bs:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #d39e00;
-    }
+    body { background-color: #0b1d3a; color: #ffffff; font-family: Arial, sans-serif; }
+    .navbar { background-color: #12284c; border-bottom: 3px solid #ffc107; }
+    .bs-card { background-color: #16325c; border: 2px solid #ffc107; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+    .badge-buff { background-color: #28a745; }
+    .badge-nerf { background-color: #dc3545; }
+    .offcanvas { background-color: #0b1d3a; color: white; }
+    ul { padding-left: 20px; margin-bottom: 0; }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar sticky-top navbar-dark p-3">
+  <nav class="navbar navbar-dark p-3 sticky-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-      <button class="btn btn-warning btn-bs" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-        <i class="fas fa-bars fs-4"></i>
+      <button class="btn btn-warning fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu">
+        <i class="fas fa-bars"></i> Menü
       </button>
 
-      <span class="navbar-brand fs-3 text-warning m-0">
-        <i class="fas fa-star text-warning me-1"></i> Rowax&Stars
+      <span class="navbar-brand fw-bold text-warning m-0 fs-4">
+        <i class="fas fa-star text-warning"></i> Rowax&Stars
       </span>
 
-      <!-- ARAMA ÇUBUĞU -->
-      <div class="position-relative" style="max-width: 200px;">
-        <input type="text" id="searchInput" class="form-control bg-dark text-white border-warning" placeholder="Karakter Ara..." onkeyup="filterNewsAndBrawlers()">
-      </div>
+      <input type="text" id="searchInput" class="form-control w-25 bg-dark text-white border-warning" placeholder="Karakter Ara..." onkeyup="filterContent()">
     </div>
   </nav>
 
-  <!-- SOL MENÜ (OFFCANVAS) -->
-  <div class="offcanvas offcanvas-start text-white" id="sidebarMenu">
+  <!-- SOL MENÜ -->
+  <div class="offcanvas offcanvas-start" id="menu">
     <div class="offcanvas-header border-bottom border-warning">
-      <h4 class="offcanvas-title text-warning bs-font"><i class="fas fa-gamepad"></i> Menü</h4>
+      <h4 class="offcanvas-title text-warning fw-bold">Rowax&Stars Menü</h4>
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
       <div class="d-grid gap-3">
-        <button class="btn btn-outline-warning text-start fs-5 p-3" data-bs-dismiss="offcanvas" onclick="showSection('newsSection')">
+        <button class="btn btn-outline-warning text-start p-3 fw-bold" data-bs-dismiss="offcanvas" onclick="showSection('newsSection')">
           <i class="fas fa-newspaper me-2"></i> Buff & Nerf Haberleri
         </button>
-        <button class="btn btn-outline-warning text-start fs-5 p-3" data-bs-dismiss="offcanvas" onclick="showSection('calculatorSection')">
-          <i class="fas fa-trophy me-2"></i> Kupa & Prestij Hesaplayıcı
+        <button class="btn btn-outline-warning text-start p-3 fw-bold" data-bs-dismiss="offcanvas" onclick="showSection('calcSection')">
+          <i class="fas fa-calculator me-2"></i> Kupa & Prestij Hesaplayıcı
         </button>
-        <button class="btn btn-outline-warning text-start fs-5 p-3" data-bs-dismiss="offcanvas" onclick="showSection('tierlistSection')">
+        <button class="btn btn-outline-warning text-start p-3 fw-bold" data-bs-dismiss="offcanvas" onclick="showSection('tierSection')">
           <i class="fas fa-list-ol me-2"></i> Tier List
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ANA İÇERİK -->
+  <!-- İÇERİK ALANI -->
   <div class="container my-4">
 
-    <!-- 1. HABERLER SEKSİYONU (VARSAYILAN / ANA SAYFA) -->
-    <div id="newsSection" class="main-section">
-      <h2 class="text-warning mb-4 text-center"><i class="fas fa-bolt"></i> Güncel Buff & Nerf Haberleri</h2>
-      <div id="newsContainer" class="row g-3">
-        <!-- Güncel Haber Kartları -->
-        <div class="col-md-6 news-item" data-name="shelly">
-          <div class="bs-card p-3">
+    <!-- BUFF & NERF HABERLERİ -->
+    <div id="newsSection" class="content-section">
+      <h2 class="text-warning mb-4 text-center fw-bold"><i class="fas fa-bolt"></i> Güncel Buff & Nerf Haberleri</h2>
+      <div class="row" id="newsList">
+
+        <!-- NERFLER -->
+        <div class="col-md-6 news-card" data-name="shade">
+          <div class="bs-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h4 class="m-0 text-warning">Shelly</h4>
-              <span class="badge badge-buff"><i class="fas fa-arrow-up"></i> BUFF</span>
+              <h4 class="text-warning m-0 fw-bold">Shade</h4>
+              <span class="badge badge-nerf p-2"><i class="fas fa-arrow-down"></i> NERF</span>
             </div>
-            <p class="m-0">Ana mermi hasarı 600'den 640'a çıkarıldı. Süper yeteneğinin doldurma hızı %5 artırıldı.</p>
+            <ul>
+              <li>Düşmanların yanındayken Süper dolum hızı %15 azaltıldı.</li>
+              <li>Aksesuar 'Long arms': Bekleme süresi 18s → 20s çıkarıldı.</li>
+              <li>Aksesuar 'Jump scare': Korkutma yarıçapı 1000 → 600 düşürüldü.</li>
+              <li>Hiperşarj Buffie: Bonus hasar %75 → %30 düşürüldü.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="col-md-6 news-item" data-name="fang">
-          <div class="bs-card p-3">
+        <div class="col-md-6 news-card" data-name="gus">
+          <div class="bs-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h4 class="m-0 text-warning">Fang</h4>
-              <span class="badge badge-nerf"><i class="fas fa-arrow-down"></i> NERF</span>
+              <h4 class="text-warning m-0 fw-bold">Gus</h4>
+              <span class="badge badge-nerf p-2"><i class="fas fa-arrow-down"></i> NERF</span>
             </div>
-            <p class="m-0">Süper yetenek menzili %8 azaltıldı. Can değeri 8600'den 8200'e düşürüldü.</p>
+            <ul>
+              <li>Aksesuar 'Knockback spirit': Bekleme süresi 18 saniyeye çıkarıldı.</li>
+              <li>Yıldız Gücü 'Health Bonanza': İyileştirme artışı %100 → %75 düşürüldü.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="col-md-6 news-item" data-name="cordelius">
-          <div class="bs-card p-3">
+        <div class="col-md-6 news-card" data-name="el primo">
+          <div class="bs-card">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h4 class="m-0 text-warning">Cordelius</h4>
-              <span class="badge badge-rework"><i class="fas fa-sync"></i> REWORK</span>
+              <h4 class="text-warning m-0 fw-bold">El Primo</h4>
+              <span class="badge badge-nerf p-2"><i class="fas fa-arrow-down"></i> NERF</span>
             </div>
-            <p class="m-0">Gölge alemindeki hareket hızı düzenlendi, aksesuar kullanım süresi 1 saniyeye sabitlendi.</p>
+            <ul>
+              <li>Aksesuar 'Asteroid Belt': Bekleme süresi 16s → 20s çıkarıldı.</li>
+              <li>Aksesuar 'Asteroid Belt': Mermilerden kazanılan Süper şarjı %50 azaltıldı.</li>
+              <li>Yıldız Gücü 'Meteor Rush': Hızlandırma süresi 4s → 3s düşürüldü.</li>
+              <li>Yıldız Gücü 'Meteor Rush': Kalkan %20 → %15 düşürüldü.</li>
+            </ul>
           </div>
         </div>
 
-        <div class="col-md-6 news-item" data-name="mortis">
-          <div class="bs-card p-3">
-            <div class="d-flex justify-c
+        <div class="col-md-6 news-card" data-name="amber">
+          <div class="bs-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h4 class="text-warning m-0 fw-bold">Amber</h4>
+              <span class="badge badge-nerf p-2"><i class="fas fa-arrow-down"></i> NERF</span>
+            </div>
+            <ul>
+              <li>Aksesuar 'Fire Starters': Canı 1750 → 1300 düşürüldü.</li>
+              <li>Yıldız Gücü 'Wild Flames': Yağ izi süresi 3s → 1s düşürüldü.</li>
+              <li>Hiperşarj Buffie: Yanma hasarı 500 → 240 düşürüldü.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6 news-card" data-name="nori">
+          <div class="bs-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h4 class="text-warning m-0 fw-bold">Nori</h4>
+              <span class="
